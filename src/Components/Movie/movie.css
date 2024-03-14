@@ -1,0 +1,9 @@
+.movieBg{
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: left calc((50vw - 170px) - 340px) top;
+}
+
+.movieBgGradient{
+    background: linear-gradient(to right, rgba(94.5, 136.5, 136.5, 1) calc((50vw - 170px) - 340px), rgba(94.5, 136.5, 136.5, 0.84) 50%, rgba(94.5, 136.5, 136.5, 0.84) 100%);
+}
