@@ -24,7 +24,7 @@ export default function Home() {
 
             <div className="mt-10 mx-10 flex flex-wrap">
                 {popularMovies.map((movie, key) => (
-                    <Link to="/film" state={{ movieId: movie.id }} key={key} className="movieCard p-2 border" >
+                    <Link to={"/film/" + movie.id} state={{ movieId: movie.id }} key={key} className="movieCard p-2 border" >
                         <img src={image_path + movie.poster_path} className="movieImg border-b pb-3"></img>
                         <div className="inline pt-2">
                             <span>{movie.title}</span>

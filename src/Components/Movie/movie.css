@@ -1,9 +1,28 @@
-.movieBg{
+.movieBg {
     background-repeat: no-repeat;
-    background-size: auto;
-    background-position: left calc((50vw - 170px) - 340px) top;
+    background-size: cover;
+    background-position: center;
 }
 
-.movieBgGradient{
+.movieBgGradient {
     background: linear-gradient(to right, rgba(94.5, 136.5, 136.5, 1) calc((50vw - 170px) - 340px), rgba(94.5, 136.5, 136.5, 0.84) 50%, rgba(94.5, 136.5, 136.5, 0.84) 100%);
+}
+
+.actorCard {
+    min-width: 140px;
+    width: 140px;
+    margin: 10px 4px 10px 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.actorCard_img {
+    min-width: 138px;
+    width: 138px;
+    height: 175px;
+    display: block;
+    overflow: hidden;
+}
+
+.actorCard_img img{
+    width : 100%;
 }
