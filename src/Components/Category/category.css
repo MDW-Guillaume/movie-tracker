@@ -1,0 +1,14 @@
+.movie_img {
+    min-width: 94px;
+    width: 94px;
+    height: 141px;
+    display: block;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.movie-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

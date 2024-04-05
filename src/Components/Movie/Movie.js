@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { headers } from '../../config.js';
 import './movie.css';
 
 export default function Movie() {
@@ -16,7 +17,6 @@ export default function Movie() {
             return;
         }
 
-        const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDJjN2ZlMTk4OTgzZGE3YjkyMzlmNjYxMjFmYTg5MSIsInN1YiI6IjY1ZjE3MWIzZmJlMzZmMDE0OGVkNDQ2OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gXlT-iIuJa9-p8zVqHCwyvAZ5D_z7DBd0F_5VkWLX8Q' };
         fetch('https://api.themoviedb.org/3/movie/' + location.state.movieId + '?language=fr-FR', { headers })
             .then((r) => r.json())
             .then((movieData) => {
@@ -66,7 +66,8 @@ export default function Movie() {
                                     <h1 className="text-4xl font-semibold">{movie.title} ({releaseYear})</h1>
                                     <p>{movie.release_date} -
                                         {movie.genres.map((genre, key) => (
-                                            <span key={key}> {genre.name} </span> // Futur lien vers la catégorie correspondante
+                                            // Futur lien vers la catégorie correspondante
+                                            <Link to={`/categorie/${genre.id}`} state={{ categoryId: genre.id }} key={key}>{genre.name} </Link>
                                         ))}- {duration}</p>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { headers } from '../../config.js';
 import background from "../../Images/polygon.png";
 import { Link } from "react-router-dom";
 import "./home.css";
@@ -7,7 +8,6 @@ export default function Home() {
     const [popularMovies, setPopularMovies] = useState([]);
     const image_path = 'https://image.tmdb.org/t/p/original/';
     useEffect(() => {
-        const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDJjN2ZlMTk4OTgzZGE3YjkyMzlmNjYxMjFmYTg5MSIsInN1YiI6IjY1ZjE3MWIzZmJlMzZmMDE0OGVkNDQ2OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gXlT-iIuJa9-p8zVqHCwyvAZ5D_z7DBd0F_5VkWLX8Q' };
         fetch('https://api.themoviedb.org/3/trending/movie/week?language=fr-FR', { headers })
             .then((response) => response.json())
             .then((movies) => {
