@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { headers } from '../../config.js';
+import Rating from '../Rating/Rating.js';
 import './movie.css';
 
 export default function Movie() {
@@ -20,7 +21,6 @@ export default function Movie() {
         fetch('https://api.themoviedb.org/3/movie/' + location.state.movieId + '?language=fr-FR', { headers })
             .then((r) => r.json())
             .then((movieData) => {
-                // console.log(movieData);
                 setMovie(movieData);
             })
 
@@ -28,14 +28,12 @@ export default function Movie() {
             .then((r) => r.json())
             .then((movieCredits) => {
                 setCredits(movieCredits.cast);
-                // console.log(movieCredits);
             })
 
         fetch('https://api.themoviedb.org/3/movie/' + location.state.movieId + '/videos?language=fr-FR', { headers })
             .then((r) => r.json())
             .then((movieVideos) => {
                 setVideos(movieVideos.results);
-                console.log(movieVideos.results);
             })
     }, [location.state, navigate]);
 
@@ -47,11 +45,7 @@ export default function Movie() {
         const durationHours = Math.floor(movie.runtime / 60);
         const durationMinutes = movie.runtime % 60;
 
-        // Affichage de la durée du film
         const duration = durationHours < 1 ? durationMinutes : durationHours + 'h' + durationMinutes;
-
-
-
 
         return (
             <>
@@ -66,9 +60,21 @@ export default function Movie() {
                                     <h1 className="text-4xl font-semibold">{movie.title} ({releaseYear})</h1>
                                     <p>{movie.release_date} -
                                         {movie.genres.map((genre, key) => (
-                                            // Futur lien vers la catégorie correspondante
-                                            <Link to={`/categorie/${genre.id}`} state={{ categoryId: genre.id }} key={key}>{genre.name} </Link>
+                                            <Link to={`/categorie/${genre.id}`} state={{ categoryId: genre.id }} key={key}> {genre.name} </Link>
                                         ))}- {duration}</p>
+
+                                    {movie.tagline && <p className="mt-5 text-lg text-gray-300">{movie.tagline}</p>}
+
+                                    {movie.overview &&
+                                        <div className="mt-5">
+                                            <h3 className="text-xl">Synopsis</h3>
+                                            <p className="mt-5">
+                                                {movie.overview}
+                                            </p>
+                                        </div>
+                                    }
+
+                                    <Rating movie={movie}/>
                                 </div>
                             </div>
                         </div>

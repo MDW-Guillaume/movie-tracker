@@ -3,13 +3,13 @@ import React from 'react';
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 5; // Nombre maximum de numéros de page à afficher dans la navigation
+    const maxPagesToShow = 5;
     const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
 
     if (startPage > 1) {
       pageNumbers.push(
-        <li key={1}>
+        <li key={1} className="mx-3">
           <button onClick={() => onPageChange(1)}>{1}</button>
         </li>
       );
@@ -23,10 +23,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       );
     }
 
-    // Ajouter un lien pour la dernière page si elle n'est pas déjà incluse
     if (endPage < totalPages) {
       pageNumbers.push(
-        <li key="last" className={`mx-1 ${totalPages === currentPage ? 'active' : ''}`}>
+        <li key="last" className={`mx-3 ${totalPages === currentPage ? 'active' : ''}`}>
           <button onClick={() => onPageChange(totalPages)}>{totalPages}</button>
         </li>
       );

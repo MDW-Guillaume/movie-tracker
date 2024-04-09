@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { headers } from '../../config.js';
-import MoviesSearchList, { updateSearchListView } from '../List/MoviesSearchList.js';
+import MoviesSearchList from '../List/MoviesSearchList.js';
 import './searchbar.css';
 
 
@@ -8,6 +8,7 @@ export default function SearchBar() {
 
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState('');
+    const [inputFocus, setInputFocus] = useState(true);
 
     useEffect(() => {
         if (searchValue.length >= 3) {
@@ -19,10 +20,8 @@ export default function SearchBar() {
                     return response.json();
                 })
                 .then(searchData => {
-                    console.log(searchData.results.length)
                     if(searchData.results.length > 0){
                         setSearchResult(searchData.results);
-                        // updateSearchListView(searchData.results)
                     }
                 })
                 .catch(error => {
@@ -30,13 +29,22 @@ export default function SearchBar() {
                 });
         }else{
             setSearchResult([]);
-            // updateSearchListView([])
         }
     }, [searchValue]);
 
     const handleSearchInputChange = (event) => {
         setSearchValue(event.target.value);
     };
+    
+    const handleSearchShowStatus = (event) => {
+        if(event.type == "focus"){
+            setInputFocus(true)
+        }else{
+            setTimeout(() => {
+                setInputFocus(false);
+            }, 100);
+        }
+    }
 
     return (
         <div className="relative">
@@ -45,13 +53,14 @@ export default function SearchBar() {
                 <input
                     type="text"
                     name="s"
-                    className="border-b-2 border-black/50"
+                    className="w-full border-b-2 border-black/50"
                     value={searchValue}
                     onChange={handleSearchInputChange}
+                    onFocus={handleSearchShowStatus}
+                    onBlur={handleSearchShowStatus}
                 />
             </form>
-{console.log(`ici : ${searchResult}`)}
-            <MoviesSearchList searchResult={searchResult}/>
+            {inputFocus && <MoviesSearchList searchResult={searchResult} searchValue={searchValue} />}
         </div>
     )
 

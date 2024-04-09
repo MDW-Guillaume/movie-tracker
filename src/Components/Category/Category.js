@@ -15,10 +15,6 @@ export default function Category() {
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
-
     useEffect(() => {
         if (!location.state) {
             navigate('/');
@@ -37,11 +33,10 @@ export default function Category() {
             const selected = categorys.find(category => category.id === parseInt(location.state.categoryId));
             setSelectedCategory(selected);
         }
-    }, [categorys, location.state.categoryId,headers])
+    }, [categorys, location.state.categoryId, headers])
 
     useEffect(() => {
-        if (selectedCategory && moviesRequestData.length === 0 && currentPage) {
-            console.log('je fetch');
+        if (selectedCategory && currentPage) {
             if (selectedCategory) {
                 fetch(`https://api.themoviedb.org/3/discover/movie?language=fr-FR&page=${currentPage}&sort_by=popularity.desc&with_genres=${selectedCategory.id}`, { headers })
                     .then(response => {
@@ -51,7 +46,6 @@ export default function Category() {
                         return response.json();
                     })
                     .then(moviesRequestData => {
-                        console.log(moviesRequestData);
                         if (moviesRequestData.results.length > 0) {
                             setMoviesRequestData(moviesRequestData);
                             setMovies(moviesRequestData.results);
@@ -63,13 +57,10 @@ export default function Category() {
             }
         }
     }, [currentPage, selectedCategory, headers]);
-    
-    // console.log(currentPage)
-    // console.log(categorys)
-    // console.log(selectedCategory)
-    // console.log(moviesRequestData)
-    // console.log(movies, movies.length)
-    // console.log('----')
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     if (selectedCategory === undefined) {
         return null;

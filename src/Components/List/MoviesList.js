@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import noThumbnail from '../../Images/no-thumbnail.webp';
 
 function MoviesList({ movies }) {
     const image_path = 'https://image.tmdb.org/t/p/original/';
@@ -16,7 +17,11 @@ function MoviesList({ movies }) {
             <Link to={`/film/${movie.id}`} state={{ movieId: movie.id }} key={key}>
                 <div className="my-3 flex border rounded-lg shadow-lg">
                     <div className="">
+                        {movie.poster_path && 
                         <img src={movie.poster_path ? image_path + movie.poster_path : ''} className="movie_img" />
+                        ||
+                        <img src={noThumbnail} className="movie_img" />
+                        }
                     </div>
                     <div className="movie-info flex flex-col justify-between my-5 mx-5">
                         <h3 className="font-bold">{movie.title}</h3>

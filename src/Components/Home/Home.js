@@ -11,7 +11,6 @@ export default function Home() {
         fetch('https://api.themoviedb.org/3/trending/movie/week?language=fr-FR', { headers })
             .then((response) => response.json())
             .then((movies) => {
-                console.log(movies.results)
                 setPopularMovies(movies.results)
             })
     }, [])
