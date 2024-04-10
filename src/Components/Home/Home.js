@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { headers } from '../../config.js';
 import background from "../../Images/polygon.png";
 import { Link } from "react-router-dom";
+import FavoriteButton from '../Favorites/FavoriteButton'
 import "./home.css";
 
 export default function Home() {
@@ -23,12 +24,15 @@ export default function Home() {
 
             <div className="mt-10 mx-10 flex flex-wrap">
                 {popularMovies.map((movie, key) => (
-                    <Link to={"/film/" + movie.id} state={{ movieId: movie.id }} key={key} className="movieCard p-2 border" >
-                        <img src={image_path + movie.poster_path} className="movieImg border-b pb-3"></img>
-                        <div className="inline pt-2">
-                            <span>{movie.title}</span>
-                        </div>
-                    </Link>
+                    <div className="relative movieCard ">
+                        <Link to={"/film/" + movie.id} state={{ movieId: movie.id }} key={key} className="text-center p-4 border" >
+                            <img src={image_path + movie.poster_path} className="movieImg border-b pb-3" alt={movie.title}></img>
+                            <div className="inline pt-2">
+                                <span>{movie.title}</span>
+                            </div>
+                        </Link>
+                        <div className="absolute right-7 top-5 p-2"><FavoriteButton movieId={movie.id}/></div>
+                    </div>
                 ))}
             </div>
         </>

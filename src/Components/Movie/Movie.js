@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { headers } from '../../config.js';
 import Rating from '../Rating/Rating.js';
+import FavoriteButton from '../Favorites/FavoriteButton.js';
 import './movie.css';
 
 export default function Movie() {
@@ -76,6 +77,7 @@ export default function Movie() {
 
                                     <Rating movie={movie}/>
                                 </div>
+                                <FavoriteButton movieId={movie.id}/>
                             </div>
                         </div>
                     </div>

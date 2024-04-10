@@ -33,7 +33,7 @@ export default function Category() {
             const selected = categorys.find(category => category.id === parseInt(location.state.categoryId));
             setSelectedCategory(selected);
         }
-    }, [categorys, location.state.categoryId, headers])
+    }, [categorys, location.state])
 
     useEffect(() => {
         if (selectedCategory && currentPage) {
@@ -56,7 +56,7 @@ export default function Category() {
                     });
             }
         }
-    }, [currentPage, selectedCategory, headers]);
+    }, [currentPage, selectedCategory]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);

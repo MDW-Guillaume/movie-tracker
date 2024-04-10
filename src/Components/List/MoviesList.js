@@ -17,10 +17,10 @@ function MoviesList({ movies }) {
             <Link to={`/film/${movie.id}`} state={{ movieId: movie.id }} key={key}>
                 <div className="my-3 flex border rounded-lg shadow-lg">
                     <div className="">
-                        {movie.poster_path && 
-                        <img src={movie.poster_path ? image_path + movie.poster_path : ''} className="movie_img" />
+                        {(movie.poster_path && 
+                        <img src={movie.poster_path ? image_path + movie.poster_path : ''} className="movie_img" alt={movie.title}/>)
                         ||
-                        <img src={noThumbnail} className="movie_img" />
+                        <img src={noThumbnail} className="movie_img" alt={movie.title}/>
                         }
                     </div>
                     <div className="movie-info flex flex-col justify-between my-5 mx-5">

@@ -13,7 +13,7 @@ export default function Rating(data) {
                     setPersonalRating(movieState.rated.value);
                 }
             })
-    }, [])
+    }, [data.movie.id])
 
     
 

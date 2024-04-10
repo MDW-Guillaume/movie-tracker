@@ -12,6 +12,7 @@ export default function Header() {
                     <li><Link to="/" className="list">Accueil</Link></li>
                     <li><Link to="/films" className="list">Films</Link></li>
                     <li><Link to="/categories" className="list">Categories</Link></li>
+                    <li><Link to="/favoris" className="list">Favoris</Link></li>
                 </ul>
             </div>
 

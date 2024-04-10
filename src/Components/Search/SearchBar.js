@@ -8,7 +8,7 @@ export default function SearchBar() {
 
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState('');
-    const [inputFocus, setInputFocus] = useState(true);
+    const [inputFocus, setInputFocus] = useState(false);
 
     useEffect(() => {
         if (searchValue.length >= 3) {
@@ -20,9 +20,7 @@ export default function SearchBar() {
                     return response.json();
                 })
                 .then(searchData => {
-                    if(searchData.results.length > 0){
-                        setSearchResult(searchData.results);
-                    }
+                    setSearchResult(searchData.results);
                 })
                 .catch(error => {
                     console.error('Erreur lors de la récupération des données:', error);
@@ -37,7 +35,7 @@ export default function SearchBar() {
     };
     
     const handleSearchShowStatus = (event) => {
-        if(event.type == "focus"){
+        if(event.type === "focus"){
             setInputFocus(true)
         }else{
             setTimeout(() => {

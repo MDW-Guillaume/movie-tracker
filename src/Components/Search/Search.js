@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { headers } from '../../config.js';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import background from "../../Images/polygon.png";
 import Pagination from '../Pagination/Pagination';
 import MoviesList from '../List/MoviesList.js';
@@ -8,7 +8,6 @@ import MoviesList from '../List/MoviesList.js';
 export default function Search() {
     
     const location = useLocation();
-    const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState('');
     const [movies, setMovies] = useState([]);
     const [moviesRequestData, setMoviesRequestData] = useState([]);
@@ -34,7 +33,7 @@ export default function Search() {
                 setMovies(moviesRequestData.results);
             }
         })
-    }, [searchValue, currentPage, headers])
+    }, [searchValue, currentPage])
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
