@@ -37,7 +37,7 @@ export default function Movie() {
             .then((movieVideos) => {
                 setVideos(movieVideos.results);
             })
-    }, [location.state, navigate]);
+    }, []);
 
 
     if (movie === undefined) {

@@ -12,7 +12,7 @@ export default function Favorites() {
     useEffect(() => {
         if(favorites && favorites.length > 0){
             favorites.map((favorite, key) => {
-                console.log(favorite)
+
                 fetch(`https://api.themoviedb.org/3/movie/${favorite.movie_id}?language=fr-FR`, { headers })
                 .then(response => {
                     if (!response.ok) {

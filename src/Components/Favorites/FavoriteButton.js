@@ -7,7 +7,7 @@ export default function FavoriteButton(data) {
 
     const [favoriteId, setFavoriteId] = useState(null)
     const favorites = useLiveQuery(() => db.favorites.where({ 'movie_id': data.movieId }).toArray());
-    console.log(favorites)
+
     useEffect(() => {
         if (favorites && favorites.length > 0) {
             setFavoriteId(favorites[0].id)
@@ -42,14 +42,13 @@ export default function FavoriteButton(data) {
 
     return (
         <>
-            {console.log(favoriteId)}
             {(!favoriteId &&
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill="pink"
+                    fill="#ff2121"
                     role="button"
                 onClick={addToFavorite()}
                 >
@@ -61,7 +60,7 @@ export default function FavoriteButton(data) {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill="pink"
+                    fill="#ff2121"
                     role="button"
                 onClick={deleteToFavorite()} 
                 >

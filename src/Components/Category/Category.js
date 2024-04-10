@@ -26,14 +26,14 @@ export default function Category() {
             .then((categoryData) => {
                 setCategorys(categoryData.genres);
             })
-    }, [location.state, navigate,]);
+    }, []);
 
     useEffect(() => {
         if (categorys.length > 0 && location.state) {
             const selected = categorys.find(category => category.id === parseInt(location.state.categoryId));
             setSelectedCategory(selected);
         }
-    }, [categorys, location.state])
+    }, [categorys])
 
     useEffect(() => {
         if (selectedCategory && currentPage) {
