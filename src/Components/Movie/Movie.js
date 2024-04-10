@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { headers } from '../../config.js';
 import Rating from '../Rating/Rating.js';
 import FavoriteButton from '../Favorites/FavoriteButton.js';
+import Comments from '../Comments/Comments.js';
 import './movie.css';
 
 export default function Movie() {
@@ -106,7 +107,7 @@ export default function Movie() {
                         <div className="flex items-baseline gap-x-2.5">
                             <h2 className="text-2xl mr-5">Médias</h2>
                             <div className="">
-                                <h3 className="hover:underline underline-offset-4 decoration-2"><span>Vidéos</span> <span className="bg-slate-300 px-1.5 py-px rounded-lg">{videos.length}</span></h3>
+                                <h3><span>Vidéos</span> <span className="bg-slate-300 px-1.5 py-px rounded-lg">{videos.length}</span></h3>
                             </div>
                         </div>
                         <div className="flex flex-nowrap w-full	overflow-x-scroll pb-2.5 gap-x-2.5 mt-2.5">
@@ -121,6 +122,10 @@ export default function Movie() {
                             ))}
 
                         </div>
+
+                        <hr className="mt-12" />
+
+                        <Comments movie={movie.id}/>
 
                     </div>
                 </div>

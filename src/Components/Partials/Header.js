@@ -10,7 +10,6 @@ export default function Header() {
                     
                 <ul className="flex justify-center space-x-10 ml-20">
                     <li><Link to="/" className="list">Accueil</Link></li>
-                    <li><Link to="/films" className="list">Films</Link></li>
                     <li><Link to="/categories" className="list">Categories</Link></li>
                     <li><Link to="/favoris" className="list">Favoris</Link></li>
                 </ul>

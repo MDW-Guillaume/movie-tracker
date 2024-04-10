@@ -1,0 +1,4 @@
+.commentCard {
+    width : calc(50% - 30px);
+    margin : 10px 15px;
+}
